@@ -2,6 +2,7 @@ import math
 import constants
 import operator
 from bitarray import bitarray
+from octet_array import octet_array
 
 def tuples(encoder, X):
     '''
@@ -29,8 +30,6 @@ def tuples(encoder, X):
     b1 = random(X, 5, encoder.P1)
 
     return (d, a, b, d1, a1, b1)
-
-
 
 def random(y, i, m):
     '''
@@ -69,22 +68,3 @@ def degree(v, W):
     if d < (W-2):
         return d
     return W-2
-
-
-def ba_from_int(length, x):
-    ba = bitarray(length)
-    ba.setall(0)
-    shift_x = x
-    for i in xrange(len(ba)):
-        ba[i] = shift_x % 2
-        shift_x = shift_x >> 1
-
-    return ba
-
-
-def int_from_ba(ba):
-    x = 0
-    for i in xrange(len(ba)):
-        x += int((ba[i] * math.pow(2, i)))
-
-    return x
